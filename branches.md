@@ -2,7 +2,7 @@
 
 ## What to do when there are conflicts preventing a merge.
 
-Fetch changes from your remote, then merge or pull from the remote branch you are having the conflicts with _on your local feature branch_, then push.
+TODO
 
 ## COMP423 / COMP590 Branching Conventions
 
@@ -10,17 +10,17 @@ For coursework, the `stage` branch is deployed to your team's cloud infrastructu
 
 Common team workflow scenarios include:
 
-* Beginning work on a new Issue Branch
-* Beginning work on a subtask of an Issue Branch
-* Pushing your branch to GitHub
-* Collaborating on a branch on GitHub
-* Creating a Pull Request (PR) and Code Review (CR)
-* Continuing work after on PR after creation / CR changes requested
-* Catching a PR branch up with its base branch before merging
-* Merging a PR via Squash and Merge
-* Switching Issues/Tasks to Work on the "Next Thing"
-* Switching Issues/Tasks to Review a Teammate's Code
-* Catching your team's `stage` branch up with [csxl.unc.edu](https://csxl.unc.edu) production's `main` branch
+- Beginning work on a new Issue Branch
+- Beginning work on a subtask of an Issue Branch
+- Pushing your branch to GitHub
+- Collaborating on a branch on GitHub
+- Creating a Pull Request (PR) and Code Review (CR)
+- Continuing work after on PR after creation / CR changes requested
+- Catching a PR branch up with its base branch before merging
+- Merging a PR via Squash and Merge
+- Switching Issues/Tasks to Work on the "Next Thing"
+- Switching Issues/Tasks to Review a Teammate's Code
+- Catching your team's `stage` branch up with [csxl.unc.edu](https://csxl.unc.edu) production's `main` branch
 
 Each of these scenarios is discussed step-by-step below.
 
@@ -41,7 +41,7 @@ When using GitHub Project Board and Issues to organize your team's tasks and wor
 
 1. In your DevContainer, switch to the `stage` branch.
 2. Create and switch to your branch `git switch --create NN-[descriptive-branch-name]` where `NN` is the issue number on GitHub and the `[descriptive-branch-name]` adds explanatory context of what the purpose of the branch is.
-3. Push your branch ref to GitHub: `git push origin [your branch's name]` 
+3. Push your branch ref to GitHub: `git push origin [your branch's name]`
 4. From the GitHub UI, open the Issue, look for "Development" in the right-hand sidebar. Click the gear icon.
 5. Search for your branch name and link it to the issue.
 
@@ -52,7 +52,7 @@ Medium-sized issues, which involve subtasks, should certainly have their own Iss
 After establishing an Issue Branch, here's how to begin working on a subtask branch:
 
 1. Confirm you are working on your issue branch: `git branch --show-current`
-    * If you are not on the correct branch, switch to it and `git pull origin --rebase` first
+   - If you are not on the correct branch, switch to it and `git pull origin --rebase` first
 2. Create the subtask branch `git switch --create NN-subtask-[descriptive-branch-name]` where `NN` is the issue number and `[descriptive-branch-name]` describes the subtask.
 3. Once commits/progress has been made, push the subtask branch to GitHub as below
 
@@ -61,8 +61,8 @@ After establishing an Issue Branch, here's how to begin working on a subtask bra
 When you reach a stopping point on a branch, whether it is complete or not, it's a good practice to form a commit with an update on what you have completed and what remains and pushing it to GitHub.
 
 1. Confirm you are working on the branch you expect:
-    * In our DevContainer terminal's shell prompt, you should see the current branch in the yellow, parenthetical text of your prompt string.
-    * Or, use the git command: `git branch --show-current`
+   - In our DevContainer terminal's shell prompt, you should see the current branch in the yellow, parenthetical text of your prompt string.
+   - Or, use the git command: `git branch --show-current`
 2. Check status of changes `git status` and be sure any untracked files or changes not staged for commit, that should be, have been `get add`'ed to your staging area.
 3. Make a commit and give it a meaningful title and body per best practice of writing git commit messages.
 4. Push your branch: `git push origin [branch-name]`
@@ -74,12 +74,12 @@ When collaborating on a branch, it is important to pull changes your collaborato
 When collaborating on a shared branch, we recommend pulling with rebasing such that your changes are linear and follow commits your team may have pushed:
 
 1. Confirm you are working on the branch you expect:
-    * In our DevContainer terminal's shell prompt, you should see the current branch in the yellow, parenthetical text of your prompt string.
-    * Or, use the git command: `git branch --show-current`
+   - In our DevContainer terminal's shell prompt, you should see the current branch in the yellow, parenthetical text of your prompt string.
+   - Or, use the git command: `git branch --show-current`
 2. Pull any progress on the branch your collaborator(s) may have pushed:
-    * `get pull origin --rebase [branch-name]`
+   - `get pull origin --rebase [branch-name]`
 3. Reset your development database with fresh data:
-    * `python3 -m backend.script.reset_demo` (if this fails, see the [database documentation](docs/database.md))
+   - `python3 -m backend.script.reset_demo` (if this fails, see the [database documentation](docs/database.md))
 
 As per the above section, when you reach progress points large and small, you are encouraged to push to collaborative branches so that you and your partners on the branch do not diverge to significantly.
 
@@ -93,25 +93,25 @@ There are three scenarios in which you will encounter Pull Requests and Code Rev
 
 The process is largely the same, however it is important to be careful to properly establish the branch that the Pull Request will be merged into (the "base ref").
 
-After successfully pushing to a branch on GitHub, you will see a link to create a pull request for the branch printed in the terminal output. 
+After successfully pushing to a branch on GitHub, you will see a link to create a pull request for the branch printed in the terminal output.
 
 Alternatively, if you go to GitHub's Pull Requests tab and select "New Pull Request", the first selection is the base and the second is the branch you are creating the PR for. **This is where to be careful!** If you are working on a subtask of an Issue Branch, the `base` should be the Issue Branch. However, if you believe the current branch is ready to be merged back into `stage`, select `stage` here (it _should_ be the default selection due to how your team configured the repository). Then, for the **compare** branch, select the branch you are creating the Pull Request for. Below, you should see an overview of how many commits, file changes, and so on, differentiate the base branch from the comparison branch. Assuming this looks correct, press the Green "Create Pull Request" button.
 
 Name your Pull Request more meaningfully than just the default branch name. Additionally, make an effortful attempt to write a solid description of what is going on in this PR at a high-level, in English. It is important that your PR highlights all of the changes made so that your code reviewer is able to understand the motivation behind the PR. Below is a good format for items to include in your PR.
 
 **Pull Request Template**:
+
 > - Short description of the pull request and what it accomplishes.
 > - Major Changes Section: Include a list of major changes and provide important points for your Code Reviewer if necessary.
 > - Testing Section: It is useful to verify that you have tested your feature and that it works. Explain what you did to test your feature to your Code Reviewer.
 > - Future Considerations Section: Your PR will often either leave some features / fixes to be worked on later, or create the need for new features / fixes. Include these in this section.
-*In addition, if there is anything important to point out to a Code Reviewer, you can do so here.*
+>   _In addition, if there is anything important to point out to a Code Reviewer, you can do so here._
 
-[Here is an example of a PR from the CSXL Site that follows this template](https://github.com/unc-csxl/csxl.unc.edu/pull/107). 
+[Here is an example of a PR from the CSXL Site that follows this template](https://github.com/unc-csxl/csxl.unc.edu/pull/107).
 
 Add your Code Reviewer(s) in the right-hand column to request a Code Review. Also, assign the members who contributed code to the PR.
 
 Create the Pull Request!
-
 
 ### Continuing work after on PR after creation / changes requested
 
@@ -131,11 +131,11 @@ After merging in the PR, best practice is to go ahead and delete the branch. If 
 
 Finally, back in your local dev container, if you were working in this branch you can go ahead and switch back to the base branch, pull, and delete your local branch with the work that was merged in:
 
-~~~
+```
 git switch [base-branch]
 git pull origin [base-branch]
 git branch -d [merged-in-branch-name]
-~~~
+```
 
 ### Catching a PR branch up with its base branch before merging
 
@@ -173,7 +173,7 @@ While you are working on your projects, improvements, features, and functionalit
 
 The most straightforward process for catching your team's `stage` branch up with production's `main` branch is conceptually the same as the section "Catching a PR branch up with its base branch before merging", however you'll need to do this from the `upstream` remote repository, <https://github.com/unc-csxl/csxl.unc.edu> rather than your team's repository:
 
-~~~
+```
 git switch stage
 git pull origin stage
 git switch --create merge/upstream/main
@@ -181,6 +181,6 @@ git fetch upstream
 git merge upstream/main
 # Resolve any conflicts and create merge commit
 git push origin merge/upstream/main
-~~~
+```
 
 At this point, create a PR for a team member to approve to merge in upstream changes and catch your stage branch up.
